@@ -3,7 +3,12 @@
 git clone https://github.com/moddevices/mod-host
 git clone https://github.com/moddevices/mod-ui
 git clone https://github.com/micahvdm/mod
-wget https://drive.google.com/drive/folders/1nmuuTRMmMpzbwcNpNWEqGhX-6CvywDE8?usp=sharing
+wget https://drive.google.com/file/d/1lWgu4jEL0AUsyYNAYgu54fr-o3XSiFIB/view?usp=sharing
+
+mkdir .lv2
+unzip plugins.zip
+cd plugins
+sudo mv * $HOME/.lv2
 
 sudo apt-get install virtualenv python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev liblilv-dev libjpeg-dev zlib1g-dev liblilv-dev libreadline-moddevices
 
