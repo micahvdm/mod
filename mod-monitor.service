@@ -1,0 +1,13 @@
+[Unit]
+Description=MOD-host
+After=jack.service
+
+[Service]
+LimitRTPRIO=95
+LimitMEMLOCK=infinity
+Type=oneshot
+Environment=JACK_PROMISCUOUS_SERVER=jack
+ExecStart=jack_load mod-monitor
+
+[Install]
+WantedBy=multi-user.target
