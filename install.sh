@@ -84,7 +84,12 @@ cp -r veja-bass-cab.lv2/ ~patch/.lv2
 cd ..
 
 #tamgamp #TODO - very good sounding amp sim
-# git clone https://github.com/sadko4u/tamgamp.lv2.git
+git clone https://github.com/sadko4u/tamgamp.lv2.git
+cd tamgamp.lv2
+make
+sudo make install
+cp -r /usr/local/lib/lv2/tamgamp.lv2 ~patch/.lv2
+cd ..
 
 #Mod-ui
 git clone https://github.com/moddevices/mod-ui.git
@@ -107,12 +112,9 @@ sudo sed -i 's/sudo rpi-update/#sudo rpi-update/' /usr/bin/audioInjector-setup.s
 sudo sed -i -e 's/hw:pisound/hw:audioinjectorpi/' /etc/jackdrc
 
 # # Change amixer settings
-cd /home/patch/install
-sudo cp asound.state.RCA.thru.test /usr/share/doc/audioInjector/asound.state.RCA.thru.test
+# cd /home/patch/install
+# sudo cp asound.state.RCA.thru.test /usr/share/doc/audioInjector/asound.state.RCA.thru.test
 # #alsactl --file /usr/share/doc/audioInjector/asound.state.RCA.thru.test restore
-# dtoverlay=dwc2,dr_mode=peripheral
-# modules-load=dwc2,g_ether
-# echo -e "interface usb0 \nstatic ip_address=192.168.50.1" | sudo tee -a /etc/dhcpcd.conf
 
 #Create Services
 sudo cp *.service /usr/lib/systemd/system/
