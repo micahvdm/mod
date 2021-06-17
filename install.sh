@@ -5,7 +5,7 @@ set -x
 sudo apt-get update --fix-missing
 
 #Install Dependancies
-sudo apt-get -y install jackd2 virtualenv python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev liblilv-dev libjpeg-dev zlib1g-dev cmake debhelper dh-autoreconf dh-python gperf intltool ladspa-sdk libarmadillo-dev libasound2-dev libavahi-gobject-dev libavcodec-dev libavutil-dev libbluetooth-dev libboost-dev libeigen3-dev libfftw3-dev libglib2.0-dev libglibmm-2.4-dev libgtk2.0-dev libgtkmm-2.4-dev libjack-jackd2-dev libjack-jackd2-dev liblilv-dev liblrdf0-dev libsamplerate0-dev libsigc++-2.0-dev libsndfile1-dev libsndfile1-dev libzita-convolver-dev libzita-resampler-dev lv2-dev p7zip-full python3-all python3-setuptools libreadline-dev
+sudo apt-get -y install virtualenv python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev liblilv-dev libjpeg-dev zlib1g-dev cmake debhelper dh-autoreconf dh-python gperf intltool ladspa-sdk libarmadillo-dev libasound2-dev libavahi-gobject-dev libavcodec-dev libavutil-dev libbluetooth-dev libboost-dev libeigen3-dev libfftw3-dev libglib2.0-dev libglibmm-2.4-dev libgtk2.0-dev libgtkmm-2.4-dev libjack-jackd2-dev libjack-jackd2-dev liblilv-dev liblrdf0-dev libsamplerate0-dev libsigc++-2.0-dev libsndfile1-dev libsndfile1-dev libzita-convolver-dev libzita-resampler-dev lv2-dev p7zip-full python3-all python3-setuptools libreadline-dev
 
 #Install Python Dependancies
 sudo pip3 install pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 scandir backports.shutil-get-terminal-size
@@ -32,13 +32,13 @@ mkdir "SFZ Instruments"
 cd /home/pi/mod
 
 #Jack2
-#git clone --branch v1.9.14 https://github.com/jackaudio/jack2.git
-#cd jack2
-#./waf configure
-#./waf build
-#sudo ./waf install
-#./waf clean
-#cd ..
+git clone --branch v1.9.14 https://github.com/jackaudio/jack2.git
+cd jack2
+./waf configure
+./waf build
+sudo ./waf install
+./waf clean
+cd ..
 
 #Browsepy
 git clone https://github.com/moddevices/browsepy.git
@@ -55,12 +55,12 @@ make clean
 cd ..
 
 #Mod Control Chain
-git clone https://github.com/moddevices/cc-master.git
-cd cc-master
-./waf configure
-./waf build
-sudo ./waf install
-cd ..
+#git clone https://github.com/moddevices/cc-master.git
+#cd cc-master
+#./waf configure
+#./waf build
+#sudo ./waf install
+#cd ..
 
 #Mod-ttymidi
 git clone https://github.com/moddevices/mod-ttymidi.git
