@@ -7,7 +7,7 @@ LimitRTPRIO=95
 LimitMEMLOCK=infinity
 Environment=JACK_NO_AUDIO_RESERVATION=1
 Environment=JACK_PROMISCUOUS_SERVER=jack
-ExecStart=/etc/jackdrc
+ExecStart=/etc/jackdrc -P 70 -t 2000 -s -d alsa -d hw:audioinjectorpi -r 48000 -p 128 -n 2 -X raw
 
 [Install]
 WantedBy=multi-user.target
