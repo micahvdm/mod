@@ -8,8 +8,8 @@ Environment=BROWSEPY_PORT=8081
 
 WorkingDirectory=/home/patch/data/user-files/
 ExecStart=/usr/local/bin/browsepy 0.0.0.0 8081 --directory /home/patch/data/user-files --upload /home/patch/data/user-files --removable /home/patch/data/user-files
-User=patch
-Group=patch
+User=pi
+Group=pi
 Restart=always
 RestartSec=2
 
