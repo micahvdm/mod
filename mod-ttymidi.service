@@ -7,7 +7,7 @@ Requires=jack.service
 Environment=HOME=/root
 WorkingDirectory=/root
 ExecStart=/usr/local/bin/ttymidi -s /dev/ttyAMA0 -b 38400
-ExecStartPre=/usr/bin//jack_wait -w
+ExecStartPre=/usr/bin/jack_wait -w
 Restart=always
 RestartSec=1
 
