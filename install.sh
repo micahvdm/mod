@@ -12,12 +12,12 @@ sudo pip3 install pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 scandir backport
 sudo pip3 install git+git://github.com/dlitz/pycrypto@master#egg=pycrypto
 
 #Install Mod Software
-mkdir /home/patch/.lv2
-mkdir /home/patch/mod
-mkdir /home/patch/data
-mkdir /home/patch/data/pedalboards
-mkdir /home/patch/data/user-files
-cd /home/patch/data/user-files
+mkdir /home/pi/.lv2
+mkdir /home/pi/mod
+mkdir /home/pi/data
+mkdir /home/pi/data/pedalboards
+mkdir /home/pi/data/user-files
+cd /home/pi/data/user-files
 mkdir "Speaker Cabinets IRs"
 mkdir "Reverb IRs"
 mkdir "Audio Loops"
@@ -29,16 +29,16 @@ mkdir "MIDI Songs"
 mkdir "Hydrogen Drumkits"
 mkdir "SF2 Instruments"
 mkdir "SFZ Instruments"
-cd /home/patch/mod
+cd /home/pi/mod
 
 #Jack2
-# git clone --branch v1.9.14 https://github.com/jackaudio/jack2.git
-# cd jack2
-# ./waf configure
-# ./waf build
-# sudo ./waf install
-# ./waf clean
-# cd ..
+git clone --branch v1.9.14 https://github.com/jackaudio/jack2.git
+cd jack2
+./waf configure
+./waf build
+sudo ./waf install
+./waf clean
+cd ..
 
 #Browsepy
 git clone https://github.com/moddevices/browsepy.git
@@ -65,14 +65,14 @@ cd ..
 git clone https://github.com/moddevices/mod-cabsim-IR-loader.git
 cd mod-cabsim-IR-loader/source
 make
-cp -r cabsim-IR-loader.lv2 /home/patch/.lv2/
+cp -r cabsim-IR-loader.lv2 ~pi/.lv2/
 cd ../..
 
 #Veja cabsim
 git clone https://github.com/VeJa-Plugins/Cabinet-Simulator.git
 cd Cabinet-Simulator/cabsim/source
 make
-cp -r cabsim.lv2/ ~patch/.lv2
+cp -r cabsim.lv2/ ~pi/.lv2
 cd ../../..
 
 #Veja bass cabsim
@@ -80,7 +80,7 @@ git clone https://github.com/VeJa-Plugins/Bass-Cabinets.git
 cd Bass-Cabinets
 make clean
 make
-cp -r veja-bass-cab.lv2/ ~patch/.lv2
+cp -r veja-bass-cab.lv2/ ~pi/.lv2
 cd ..
 
 #tamgamp #TODO - very good sounding amp sim
@@ -88,7 +88,7 @@ git clone https://github.com/sadko4u/tamgamp.lv2.git
 cd tamgamp.lv2
 make
 sudo make install
-cp -r /usr/local/lib/lv2/tamgamp.lv2 ~patch/.lv2
+cp -r /usr/local/lib/lv2/tamgamp.lv2 ~pi/.lv2
 cd ..
 
 #Mod-ui
@@ -101,7 +101,7 @@ make
 cd ..
 sudo ./setup.py install
 cd ..
-cp /home/patch/mod/mod-ui/default.pedalboard /home/patch/data
+cp /home/pi/mod/mod-ui/default.pedalboard /home/pi/data
 
 deb_file=audio.injector.scripts_0.1-1_all.deb
 wget https://github.com/Audio-Injector/stereo-and-zero/raw/master/${deb_file}
@@ -112,12 +112,13 @@ sudo sed -i 's/sudo rpi-update/#sudo rpi-update/' /usr/bin/audioInjector-setup.s
 sudo sed -i -e 's/hw:pisound/hw:audioinjectorpi/' /etc/jackdrc
 
 # # Change amixer settings
-# cd /home/patch/install
-# sudo cp asound.state.RCA.thru.test /usr/share/doc/audioInjector/asound.state.RCA.thru.test
-# #alsactl --file /usr/share/doc/audioInjector/asound.state.RCA.thru.test restore
+cd /home/pi/install
+sudo cp asound.state.RCA.thru.test /usr/share/doc/audioInjector/asound.state.RCA.thru.test
+alsactl --file /usr/share/doc/audioInjector/asound.state.RCA.thru.test restore
 
 #Create Services
 sudo cp *.service /usr/lib/systemd/system/
+sudo ln -sf /usr/lib/systemd/system/jack.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-ttymidi.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/browsepy.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-host.service /etc/systemd/system/multi-user.target.wants
