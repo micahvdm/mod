@@ -54,6 +54,14 @@ sudo make install
 make clean
 cd ..
 
+#Mod Control Chain
+git clone https://github.com/moddevices/cc-master.git
+cd cc-master
+./waf configure
+./waf build
+sudo ./waf install
+cd ..
+
 #Mod-ttymidi
 git clone https://github.com/moddevices/mod-ttymidi.git
 cd mod-ttymidi
