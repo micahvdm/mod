@@ -109,7 +109,7 @@ make
 cd ..
 sudo ./setup.py install
 cd ..
-cp /home/pi/mod/mod-ui/default.pedalboard /home/pi/data
+cp -r /home/pi/mod/mod-ui/default.pedalboard /home/pi/data
 
 deb_file=audio.injector.scripts_0.1-1_all.deb
 wget https://github.com/Audio-Injector/stereo-and-zero/raw/master/${deb_file}
