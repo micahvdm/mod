@@ -117,7 +117,7 @@ sudo dpkg -i ${deb_file}
 rm -f ${deb_file}
 sudo sed -i 's/sudo rpi-update/#sudo rpi-update/' /usr/bin/audioInjector-setup.sh
 /usr/bin/audioInjector-setup.sh
-sudo sed -i -e 's/hw:pisound/hw:audioinjectorpi/' /etc/jackdrc
+#sudo sed -i -e 's/hw:pisound/hw:audioinjectorpi/' /etc/jackdrc
 
 # # Change amixer settings
 cd /home/pi/install
