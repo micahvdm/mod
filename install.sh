@@ -12,7 +12,7 @@ sudo pip3 install pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 scandir backport
 sudo pip3 install git+git://github.com/dlitz/pycrypto@master#egg=pycrypto
 
 #Install Mod Software
-mv mod install
+mv /home/patch/mod /home/patch/install
 mkdir /home/patch/.lv2
 mkdir /home/patch/mod
 mkdir /home/patch/data
