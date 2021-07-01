@@ -12,6 +12,7 @@ sudo pip3 install pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 scandir backport
 sudo pip3 install git+git://github.com/dlitz/pycrypto@master#egg=pycrypto
 
 #Install Mod Software
+mv mod install
 mkdir /home/patch/.lv2
 mkdir /home/patch/mod
 mkdir /home/patch/data
@@ -47,7 +48,7 @@ sudo pip3 install ./
 cd ..
 
 #Mod-host
-git clone https://github.com/moddevices/mod-host.git
+git clone --branch hotfix-1.10 https://github.com/moddevices/mod-host.git
 cd mod-host
 make -j 4
 sudo make install
@@ -101,7 +102,7 @@ make
 cd ..
 sudo ./setup.py install
 cd ..
-cp /home/patch/mod/mod-ui/default.pedalboard /home/patch/data
+cp -r /home/patch/mod/mod-ui/default.pedalboard /home/patch/data
 
 deb_file=audio.injector.scripts_0.1-1_all.deb
 wget https://github.com/Audio-Injector/stereo-and-zero/raw/master/${deb_file}
