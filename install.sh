@@ -13,7 +13,7 @@ sudo pip3 install git+git://github.com/dlitz/pycrypto@master#egg=pycrypto
 
 #Install Mod Software
 mv /home/patch/mod /home/patch/install
-mkdir /home/patch/.lv2
+#mkdir /home/patch/.lv2
 mkdir /home/patch/mod
 mkdir /home/patch/data
 mkdir /home/patch/data/pedalboards
@@ -48,18 +48,11 @@ sudo pip3 install ./
 cd ..
 
 #Mod-host
-git clone https://github.com/moddevices/mod-host.git
+git clone --branch hotfix-1.11 https://github.com/moddevices/mod-host.git
 cd mod-host
 make -j 4
 sudo make install
 make clean
-cd ..
-
-#Mod-ttymidi
-git clone https://github.com/moddevices/mod-ttymidi.git
-cd mod-ttymidi
-make -j 4
-sudo make install
 cd ..
 
 #Mod-cabsim
@@ -93,7 +86,7 @@ cp -r /usr/local/lib/lv2/tamgamp.lv2 ~patch/.lv2
 cd ..
 
 #Mod-ui
-git clone https://github.com/moddevices/mod-ui.git
+git clone --branch hotfix-1.11 https://github.com/moddevices/mod-ui.git
 cd mod-ui
 chmod +x setup.py
 pip3 install -r requirements.txt
@@ -104,22 +97,8 @@ sudo ./setup.py install
 cd ..
 cp -r /home/patch/mod/mod-ui/default.pedalboard /home/patch/data
 
-deb_file=audio.injector.scripts_0.1-1_all.deb
-wget https://github.com/Audio-Injector/stereo-and-zero/raw/master/${deb_file}
-sudo dpkg -i ${deb_file}
-rm -f ${deb_file}
-sudo sed -i 's/sudo rpi-update/#sudo rpi-update/' /usr/bin/audioInjector-setup.sh
-/usr/bin/audioInjector-setup.sh
-sudo sed -i -e 's/hw:pisound/hw:audioinjectorpi/' /etc/jackdrc
-
-# # Change amixer settings
-cd /home/patch/install
-# sudo cp asound.state.RCA.thru.test /usr/share/doc/audioInjector/asound.state.RCA.thru.test
-# #alsactl --file /usr/share/doc/audioInjector/asound.state.RCA.thru.test restore
-
 #Create Services
 sudo cp *.service /usr/lib/systemd/system/
-sudo ln -sf /usr/lib/systemd/system/mod-ttymidi.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/browsepy.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-host.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-ui.service /etc/systemd/system/multi-user.target.wants
