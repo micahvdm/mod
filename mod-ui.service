@@ -17,13 +17,15 @@ Environment=MOD_LOG=0
 Environment=MOD_APP=0
 Environment=MOD_LIVE_ISO=0
 Environment=MOD_SYSTEM_OUTPUT=1
+Environment=MOD_DATA_DIR=/home/patch/data
 Environment=MOD_USER_FILES_DIR=/home/patch/data/user-files
 Environment=JACK_PROMISCUOUS_SERVER=jack
 Environment=MOD_HTML_DIR=/usr/local/share/mod/html
 
+WorkingDirectory=/home/patch/data
 ExecStart=/usr/local/bin/mod-ui
-User=root
-Group=root
+User=mod
+Group=mod
 Restart=always
 RestartSec=2
 
