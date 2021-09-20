@@ -30,6 +30,10 @@ mkdir "MIDI Songs"
 mkdir "Hydrogen Drumkits"
 mkdir "SF2 Instruments"
 mkdir "SFZ Instruments"
+adduser --no-create-home --system --group mod
+adduser mod jack
+adduser mod audio
+chown -R mod:mod /home/patch/data
 cd /home/patch/mod
 
 #Jack2
@@ -45,6 +49,7 @@ cd /home/patch/mod
 git clone https://github.com/moddevices/browsepy.git
 cd browsepy
 sudo pip3 install ./
+chown mod:mod /usr/local/lib/browsepy
 cd ..
 
 #Mod-host
@@ -53,6 +58,7 @@ cd mod-host
 make -j 4
 sudo make install
 make clean
+chown mod:mod /usr/local/lib/mod-host
 cd ..
 
 #Mod-cabsim
@@ -94,6 +100,7 @@ cd utils
 make
 cd ..
 sudo ./setup.py install
+chown mod:mod /usr/local/lib/mod-ui
 cd ..
 cp -r /home/patch/mod/mod-ui/default.pedalboard /home/patch/data
 
@@ -105,7 +112,3 @@ sudo ln -sf /usr/lib/systemd/system/mod-host.service /etc/systemd/system/multi-u
 sudo ln -sf /usr/lib/systemd/system/mod-ui.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-monitor.service /etc/systemd/system/multi-user.target.wants
 
-adduser --no-create-home --system --group mod
-adduser mod jack
-adduser mod audio
-chown -R mod:mod /home/patch/data
