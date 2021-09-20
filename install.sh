@@ -30,10 +30,6 @@ mkdir "MIDI Songs"
 mkdir "Hydrogen Drumkits"
 mkdir "SF2 Instruments"
 mkdir "SFZ Instruments"
-sudo adduser --no-create-home --system --group mod
-sudo adduser mod jack
-sudo adduser mod audio
-sudo chown -R mod:mod /home/patch/data
 cd /home/patch/mod
 
 #Jack2
@@ -49,50 +45,48 @@ cd /home/patch/mod
 git clone https://github.com/moddevices/browsepy.git
 cd browsepy
 sudo pip3 install ./
-#chown mod:mod /usr/local/lib/browsepy
 cd ..
 
 #Mod-host
-git clone --branch hotfix-1.10 https://github.com/moddevices/mod-host.git
+git clone https://github.com/moddevices/mod-host.git
 cd mod-host
 make -j 4
 sudo make install
 make clean
-#chown mod:mod /usr/local/lib/mod-host
 cd ..
 
 #Mod-cabsim
-git clone https://github.com/moddevices/mod-cabsim-IR-loader.git
-cd mod-cabsim-IR-loader/source
-make
-cp -r cabsim-IR-loader.lv2 /home/patch/.lv2/
-cd ../..
+#git clone https://github.com/moddevices/mod-cabsim-IR-loader.git
+#cd mod-cabsim-IR-loader/source
+#make
+#cp -r cabsim-IR-loader.lv2 /home/patch/.lv2/
+#cd ../..
 
 #Veja cabsim
-git clone https://github.com/VeJa-Plugins/Cabinet-Simulator.git
-cd Cabinet-Simulator/cabsim/source
-make
-cp -r cabsim.lv2/ ~patch/.lv2
-cd ../../..
+#git clone https://github.com/VeJa-Plugins/Cabinet-Simulator.git
+#cd Cabinet-Simulator/cabsim/source
+#make
+#cp -r cabsim.lv2/ ~patch/.lv2
+#cd ../../..
 
 #Veja bass cabsim
-git clone https://github.com/VeJa-Plugins/Bass-Cabinets.git
-cd Bass-Cabinets
-make clean
-make
-cp -r veja-bass-cab.lv2/ ~patch/.lv2
-cd ..
+#git clone https://github.com/VeJa-Plugins/Bass-Cabinets.git
+#cd Bass-Cabinets
+#make clean
+#make
+#cp -r veja-bass-cab.lv2/ ~patch/.lv2
+#cd ..
 
 #tamgamp - very good sounding amp sim
-git clone https://github.com/sadko4u/tamgamp.lv2.git
-cd tamgamp.lv2
-make
-sudo make install
-cp -r /usr/local/lib/lv2/tamgamp.lv2 ~patch/.lv2
-cd ..
+#git clone https://github.com/sadko4u/tamgamp.lv2.git
+#cd tamgamp.lv2
+#make
+#sudo make install
+#cp -r /usr/local/lib/lv2/tamgamp.lv2 ~patch/.lv2
+#cd ..
 
 #Mod-ui
-git clone --branch hotfix-1.10-filehandling https://github.com/moddevices/mod-ui.git
+git clone https://github.com/moddevices/mod-ui.git
 cd mod-ui
 chmod +x setup.py
 pip3 install -r requirements.txt
@@ -100,7 +94,6 @@ cd utils
 make
 cd ..
 sudo ./setup.py install
-sudo chown mod:mod /usr/local/lib/mod-ui
 cd ..
 cp -r /home/patch/mod/mod-ui/default.pedalboard /home/patch/data
 
