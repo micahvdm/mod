@@ -30,10 +30,10 @@ mkdir "MIDI Songs"
 mkdir "Hydrogen Drumkits"
 mkdir "SF2 Instruments"
 mkdir "SFZ Instruments"
-adduser --no-create-home --system --group mod
-adduser mod jack
-adduser mod audio
-chown -R mod:mod /home/patch/data
+sudo adduser --no-create-home --system --group mod
+sudo adduser mod jack
+sudo adduser mod audio
+sudo chown -R mod:mod /home/patch/data
 cd /home/patch/mod
 
 #Jack2
@@ -100,7 +100,7 @@ cd utils
 make
 cd ..
 sudo ./setup.py install
-chown mod:mod /usr/local/lib/mod-ui
+sudo chown mod:mod /usr/local/lib/mod-ui
 cd ..
 cp -r /home/patch/mod/mod-ui/default.pedalboard /home/patch/data
 
