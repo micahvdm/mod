@@ -24,8 +24,8 @@ Environment=MOD_HTML_DIR=/usr/local/share/mod/html
 
 WorkingDirectory=/home/patch/data
 ExecStart=/usr/local/bin/mod-ui
-User=mod
-Group=mod
+User=root
+Group=root
 Restart=always
 RestartSec=2
 
