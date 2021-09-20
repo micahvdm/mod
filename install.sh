@@ -48,7 +48,7 @@ sudo pip3 install ./
 cd ..
 
 #Mod-host
-git clone https://github.com/moddevices/mod-host.git
+git clone --branch hotfix-1.10 https://github.com/moddevices/mod-host.git
 cd mod-host
 make -j 4
 sudo make install
@@ -86,7 +86,7 @@ cd ..
 #cd ..
 
 #Mod-ui
-git clone https://github.com/moddevices/mod-ui.git
+git clone --branch hotfix-1.10-filehandling https://github.com/moddevices/mod-ui.git
 cd mod-ui
 chmod +x setup.py
 pip3 install -r requirements.txt
