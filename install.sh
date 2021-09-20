@@ -104,4 +104,5 @@ sudo ln -sf /usr/lib/systemd/system/browsepy.service /etc/systemd/system/multi-u
 sudo ln -sf /usr/lib/systemd/system/mod-host.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-ui.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-monitor.service /etc/systemd/system/multi-user.target.wants
-
+sudo ln -s /home/patch/data /root/data
+sudo ln -s /home/patch/data/pedalboards /root/.pedalboards
