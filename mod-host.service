@@ -6,8 +6,6 @@ BindsTo=jack.service
 [Service]
 LimitRTPRIO=95
 LimitMEMLOCK=infinity
-User=mod
-Group=mod
 Type=forking
 Environment=JACK_PROMISCUOUS_SERVER=jack
 Environment=LV2_PATH=/home/patch/.lv2
