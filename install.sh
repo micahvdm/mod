@@ -108,3 +108,4 @@ sudo ln -sf /usr/lib/systemd/system/mod-monitor.service /etc/systemd/system/mult
 adduser --no-create-home --system --group mod
 adduser mod jack
 adduser mod audio
+chown -R mod:mod /home/patch/data
