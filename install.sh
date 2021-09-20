@@ -13,7 +13,7 @@ sudo pip3 install git+git://github.com/dlitz/pycrypto@master#egg=pycrypto
 
 #Install Mod Software
 mv /home/patch/mod /home/patch/install
-#mkdir /home/patch/.lv2
+mkdir /home/patch/.lv2
 mkdir /home/patch/mod
 mkdir /home/patch/data
 mkdir /home/patch/data/pedalboards
