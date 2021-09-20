@@ -49,7 +49,7 @@ cd /home/patch/mod
 git clone https://github.com/moddevices/browsepy.git
 cd browsepy
 sudo pip3 install ./
-chown mod:mod /usr/local/lib/browsepy
+#chown mod:mod /usr/local/lib/browsepy
 cd ..
 
 #Mod-host
@@ -58,7 +58,7 @@ cd mod-host
 make -j 4
 sudo make install
 make clean
-chown mod:mod /usr/local/lib/mod-host
+#chown mod:mod /usr/local/lib/mod-host
 cd ..
 
 #Mod-cabsim
