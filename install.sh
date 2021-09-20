@@ -48,7 +48,7 @@ sudo pip3 install ./
 cd ..
 
 #Mod-host
-git clone --branch hotfix-1.11 https://github.com/moddevices/mod-host.git
+git clone --branch hotfix-1.10 https://github.com/moddevices/mod-host.git
 cd mod-host
 make -j 4
 sudo make install
@@ -77,7 +77,7 @@ make
 cp -r veja-bass-cab.lv2/ ~patch/.lv2
 cd ..
 
-#tamgamp #TODO - very good sounding amp sim
+#tamgamp - very good sounding amp sim
 git clone https://github.com/sadko4u/tamgamp.lv2.git
 cd tamgamp.lv2
 make
@@ -86,7 +86,7 @@ cp -r /usr/local/lib/lv2/tamgamp.lv2 ~patch/.lv2
 cd ..
 
 #Mod-ui
-git clone --branch hotfix-1.11 https://github.com/moddevices/mod-ui.git
+git clone --branch hotfix-1.10-filehandling https://github.com/moddevices/mod-ui.git
 cd mod-ui
 chmod +x setup.py
 pip3 install -r requirements.txt
@@ -98,6 +98,7 @@ cd ..
 cp -r /home/patch/mod/mod-ui/default.pedalboard /home/patch/data
 
 #Create Services
+cd /home/patch/install
 sudo cp *.service /usr/lib/systemd/system/
 sudo ln -sf /usr/lib/systemd/system/browsepy.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-host.service /etc/systemd/system/multi-user.target.wants
