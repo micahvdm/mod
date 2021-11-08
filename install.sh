@@ -59,12 +59,13 @@ mkdir "SFZ Instruments"
 cd /home/pi/mod
 
 #Jack2
-git clone --branch v1.9.14 https://github.com/jackaudio/jack2.git #https://github.com/moddevices/jack2.git
+git clone https://github.com/moddevices/jack2.git
 cd jack2
 ./waf configure
 ./waf build
 ./waf install 
 ./waf clean
+cd ..
 
 #Browsepy
 git clone https://github.com/moddevices/browsepy.git
