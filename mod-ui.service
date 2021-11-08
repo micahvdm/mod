@@ -8,24 +8,22 @@ Requires=browsepy.service
 [Service]
 LimitRTPRIO=95
 LimitMEMLOCK=infinity
-Environment=LV2_PATH=/home/patch/.lv2
-Environment=LV2_PLUGIN_DIR=/home/patch/.lv2
-Environment=LV2_PEDALBOARDS_DIR=/home/patch/data/pedalboards
+Environment=LV2_PATH=/home/pi/.lv2
+Environment=LV2_PLUGIN_DIR=/home/pi/.lv2
+Environment=LV2_PEDALBOARDS_DIR=/home/pi/data/pedalboards
 Environment=MOD_DEV_ENVIRONMENT=0
 Environment=MOD_DEVICE_WEBSERVER_PORT=80
 Environment=MOD_LOG=0
 Environment=MOD_APP=0
 Environment=MOD_LIVE_ISO=0
 Environment=MOD_SYSTEM_OUTPUT=1
-Environment=MOD_DATA_DIR=/home/patch/data
-Environment=MOD_USER_FILES_DIR=/home/patch/data/user-files
+Environment=MOD_DATA_DIR=/home/pi/data
+Environment=MOD_USER_FILES_DIR=/home/pi/data/user-files
 Environment=JACK_PROMISCUOUS_SERVER=jack
 Environment=MOD_HTML_DIR=/usr/local/share/mod/html
 
-WorkingDirectory=/home/patch/data
+WorkingDirectory=/home/pi/data
 ExecStart=/usr/local/bin/mod-ui
-User=root
-Group=root
 Restart=always
 RestartSec=2
 
