@@ -50,7 +50,7 @@ make clean
 cd ..
 
 #Mod-ui
-git clone --branch hotfix-1.10-filehandling https://github.com/moddevices/mod-ui.git
+git clone --branch hotfix-1.11 https://github.com/moddevices/mod-ui.git
 cd mod-ui
 chmod +x setup.py
 pip3 install -r requirements.txt
