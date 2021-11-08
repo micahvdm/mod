@@ -6,10 +6,8 @@ Environment=HOME=/root
 Environment=BROWSEPY_HOST=0.0.0.0
 Environment=BROWSEPY_PORT=8081
 
-WorkingDirectory=/home/patch/data/user-files/
-ExecStart=/usr/local/bin/browsepy 0.0.0.0 8081 --directory /home/patch/data/user-files --upload /home/patch/data/user-files --removable /home/patch/data/user-files
-User=root
-Group=root
+WorkingDirectory=/home/pi/data/user-files/
+ExecStart=/usr/local/bin/browsepy 0.0.0.0 8081 --directory /home/pi/data/user-files --upload /home/pi/data/user-files --removable /home/pi/data/user-files
 Restart=always
 RestartSec=2
 
