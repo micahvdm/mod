@@ -1,0 +1,16 @@
+
+[Unit]
+Description=JACK2 Audio Server
+#After=sound.target
+
+[Service]
+Environment=LV2_PATH=/home/pi/.lv2
+Environment=JACK_NO_AUDIO_RESERVATION=1
+LimitRTPRIO=infinity
+LimitMEMLOCK=infinity
+ExecStart=/usr/bin/jackd  -P 70 -t 2000 -s -d alsa -d hw:audioinjectorpi -r 48000 -p 128 -n 2 -X raw
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target
