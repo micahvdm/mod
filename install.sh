@@ -10,6 +10,8 @@ sudo apt-get -y install virtualenv python3-pip python3-dev git build-essential l
 #Install Python Dependancies
 sudo pip3 install pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 scandir backports.shutil-get-terminal-size
 sudo pip3 install git+git://github.com/dlitz/pycrypto@master#egg=pycrypto
+sudo pip3 install tornado==4.3
+sudo pip3 install Pillow==8.2.0
 
 #Install RT Kernel .deb files
 wget https://github.com/kdoren/linux/releases/download/rpi_5.10.74-rt54/linux-image-5.10.74-rt54-v8+_5.10.74-1_arm64.deb
@@ -45,6 +47,7 @@ cd jack2
 ./waf build
 sudo ./waf install 
 ./waf clean
+sudo apt install -y jackd2
 cd ..
 
 #Browsepy
