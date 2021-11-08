@@ -77,8 +77,9 @@ alsactl --file /usr/share/doc/audioInjector/asound.state.RCA.thru.test restore
 cd /home/pi/install
 sudo cp *.service /usr/lib/systemd/system/
 sudo ln -sf /usr/lib/systemd/system/browsepy.service /etc/systemd/system/multi-user.target.wants
+sudo ln -sf /usr/lib/systemd/system/jack.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-host.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-ui.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-monitor.service /etc/systemd/system/multi-user.target.wants
-sudo ln -s /home/pi/data /root/data
-sudo ln -s /home/pi/data/pedalboards /root/.pedalboards
+#sudo ln -s /home/pi/data /root/data
+#sudo ln -s /home/pi/data/pedalboards /root/.pedalboards
