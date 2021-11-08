@@ -5,7 +5,7 @@ set -x
 sudo apt-get update --allow-releaseinfo-change --fix-missing
 
 #Install Dependancies
-sudo apt-get -y install virtualenv python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev liblilv-dev libjpeg-dev zlib1g-dev cmake debhelper dh-autoreconf dh-python gperf intltool ladspa-sdk libarmadillo-dev libasound2-dev libavahi-gobject-dev libavcodec-dev libavutil-dev libbluetooth-dev libboost-dev libeigen3-dev libfftw3-dev libglib2.0-dev libglibmm-2.4-dev libgtk2.0-dev libgtkmm-2.4-dev libjack-jackd2-dev libjack-jackd2-dev liblilv-dev liblrdf0-dev libsamplerate0-dev libsigc++-2.0-dev libsndfile1-dev libsndfile1-dev libzita-convolver-dev libzita-resampler-dev lv2-dev p7zip-full python3-all python3-setuptools libreadline-dev
+sudo apt-get -y install virtualenv python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev liblilv-dev libjpeg-dev zlib1g-dev cmake debhelper dh-autoreconf dh-python gperf intltool ladspa-sdk libarmadillo-dev libasound2-dev libavahi-gobject-dev libavcodec-dev libavutil-dev libbluetooth-dev libboost-dev libeigen3-dev libfftw3-dev libglib2.0-dev libglibmm-2.4-dev libgtk2.0-dev libgtkmm-2.4-dev libjack-jackd2-dev libjack-jackd2-dev liblilv-dev liblrdf0-dev libsamplerate0-dev libsigc++-2.0-dev libsndfile1-dev libsndfile1-dev libzita-convolver-dev libzita-resampler-dev lv2-dev p7zip-full python3-all python3-setuptools libreadline-dev zita-alsa-pcmi-utils
 
 #Install Python Dependancies
 sudo pip3 install pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 scandir backports.shutil-get-terminal-size
@@ -15,27 +15,7 @@ sudo pip3 install git+git://github.com/dlitz/pycrypto@master#egg=pycrypto
 wget https://github.com/kdoren/linux/releases/download/rpi_5.10.74-rt54/linux-image-5.10.74-rt54-v8+_5.10.74-1_arm64.deb
 wget https://github.com/kdoren/linux/releases/download/rpi_5.10.74-rt54/linux-headers-5.10.74-rt54-v8+_5.10.74-1_arm64.deb
 wget https://github.com/kdoren/linux/releases/download/rpi_5.10.74-rt54/linux-libc-dev_5.10.74-1_arm64.deb
-sudo apt insall ./linux*
-
-#Add to boot config.txt
-mkdir -p /boot/kern/overlays/
-cp -d /usr/lib/linux-image-5.10.74-rt54-v8+/overlays/* /boot/kern/overlays/
-cp -dr /usr/lib/linux-image-5.10.74-rt54-v8+/* /boot/kern/
-[[ -d /usr/lib/linux-image-5.10.74-rt54-v8+/broadcom ]] && cp -d /usr/lib/linux-image-5.10.74-rt54-v8+/broadcom/* /boot/kern/
-touch /boot/kern/overlays/README
-mv /boot/vmlinuz-5.10.74-rt54-v8+ /boot/kern/
-mv /boot/initrd.img-5.10.74-rt54-v8+ /boot/kern/
-mv /boot/System.map-5.10.74-rt54-v8+ /boot/kern/
-mv /boot/config-5.10.74-rt54-v8+ /boot/kern/
-cat >> /boot/config.txt << EOF
-
-[all]
-kernel=vmlinuz-5.10.74-rt54-v8+
-# initramfs initrd.img-5.10.74-rt54-v8+
-os_prefix=kern
-overlay_prefix=overlays/
-[all]
-EOF
+sudo apt install ./linux*
 
 #Install Mod Software
 mv /home/pi/mod /home/pi/install
@@ -59,11 +39,11 @@ mkdir "SFZ Instruments"
 cd /home/pi/mod
 
 #Jack2
-git clone https://github.com/moddevices/jack2.git
+git clone https://github.com/jackaudio/jack2.git
 cd jack2
 ./waf configure
 ./waf build
-./waf install 
+sudo ./waf install 
 ./waf clean
 cd ..
 
