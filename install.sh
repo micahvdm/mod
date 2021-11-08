@@ -83,7 +83,7 @@ sudo sed -i 's/sudo rpi-update/#sudo rpi-update/' /usr/bin/audioInjector-setup.s
 # # Change amixer settings
 cd /home/pi/install
 sudo cp asound.state.RCA.thru.test /usr/share/doc/audioInjector/asound.state.RCA.thru.test
-alsactl --file /usr/share/doc/audioInjector/asound.state.RCA.thru.test restore
+#alsactl --file /usr/share/doc/audioInjector/asound.state.RCA.thru.test restore
 
 #Create Services
 cd /home/pi/install
