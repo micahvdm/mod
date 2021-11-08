@@ -61,6 +61,20 @@ sudo ./setup.py install
 cd ..
 cp -r /home/pi/mod/mod-ui/default.pedalboard /home/pi/data
 
+deb_file=audio.injector.scripts_0.1-1_all.deb
+wget https://github.com/Audio-Injector/stereo-and-zero/raw/master/${deb_file}
+sudo dpkg -i ${deb_file}
+rm -f ${deb_file}
+sudo sed -i 's/sudo rpi-update/#sudo rpi-update/' /usr/bin/audioInjector-setup.sh
+/usr/bin/audioInjector-setup.sh
+sudo sed -i -e 's/hw:pisound/hw:audioinjectorpi/' /usr/bin/jackd
+
+# # Change amixer settings
+cd /home/pi/install
+sudo cp asound.state.RCA.thru.test /usr/share/doc/audioInjector/asound.state.RCA.thru.test
+alsactl --file /usr/share/doc/audioInjector/asound.state.RCA.thru.test restore
+# -P 70 -t 2000 -s -d alsa -d hw:audioinjectorpi -r 48000 -p 128 -n 2 -X raw
+
 #Create Services
 cd /home/pi/install
 sudo cp *.service /usr/lib/systemd/system/
