@@ -69,7 +69,7 @@ make
 cd ..
 sudo ./setup.py install
 cd ..
-cp -r /home/pi/mod/mod-ui/default.pedalboard /home/pi/data
+cp -r /home/pi/mod/mod-ui/default.pedalboard /home/pi/data/pedalboards
 
 deb_file=audio.injector.scripts_0.1-1_all.deb
 wget https://github.com/Audio-Injector/stereo-and-zero/raw/master/${deb_file}
@@ -79,8 +79,8 @@ sudo sed -i 's/sudo rpi-update/#sudo rpi-update/' /usr/bin/audioInjector-setup.s
 /usr/bin/audioInjector-setup.sh
 
 # # Change amixer settings
-cd /home/pi/install
-sudo cp asound.state.RCA.thru.test /usr/share/doc/audioInjector/asound.state.RCA.thru.test
+#cd /home/pi/install
+#sudo cp asound.state.RCA.thru.test /usr/share/doc/audioInjector/asound.state.RCA.thru.test
 #alsactl --file /usr/share/doc/audioInjector/asound.state.RCA.thru.test restore
 
 #Create Services
@@ -91,5 +91,5 @@ sudo ln -sf /usr/lib/systemd/system/jack.service /etc/systemd/system/multi-user.
 sudo ln -sf /usr/lib/systemd/system/mod-host.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-ui.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-monitor.service /etc/systemd/system/multi-user.target.wants
-#sudo ln -s /home/pi/data /root/data
-#sudo ln -s /home/pi/data/pedalboards /root/.pedalboards
+sudo ln -s /home/pi/data /root/data
+sudo ln -s /home/pi/data/pedalboards /root/.pedalboards
