@@ -36,14 +36,7 @@ mkdir "SFZ Instruments"
 cd /home/pi/mod
 
 #Jack2
-git clone https://github.com/jackaudio/jack2.git
-cd jack2
-./waf configure
-./waf build
-sudo ./waf install 
-./waf clean
 sudo apt install -y jackd2
-cd ..
 
 #Browsepy
 git clone https://github.com/moddevices/browsepy.git
