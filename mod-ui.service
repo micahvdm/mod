@@ -8,6 +8,7 @@ Requires=browsepy.service
 [Service]
 LimitRTPRIO=95
 LimitMEMLOCK=infinity
+Environment=HOME=/home/pi/
 Environment=LV2_PATH=/home/pi/.lv2
 Environment=LV2_PLUGIN_DIR=/home/pi/.lv2
 Environment=LV2_PEDALBOARDS_DIR=/home/pi/data/pedalboards
@@ -22,8 +23,8 @@ Environment=MOD_USER_FILES_DIR=/home/pi/data/user-files
 Environment=JACK_PROMISCUOUS_SERVER=jack
 Environment=MOD_HTML_DIR=/usr/local/share/mod/html
 
-WorkingDirectory=/home/pi/data
-ExecStart=/usr/local/bin/mod-ui
+WorkingDirectory=/home/pi/mod/mod-ui
+ExecStart=/home/pi/mod/mod-ui/server.py
 Restart=always
 RestartSec=2
 
