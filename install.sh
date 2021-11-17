@@ -13,11 +13,6 @@ sudo pip3 install git+git://github.com/dlitz/pycrypto@master#egg=pycrypto
 sudo pip3 install tornado==4.3
 sudo pip3 install Pillow==8.2.0
 
-#Install RT Kernel .deb files
-wget https://github.com/kdoren/linux/releases/download/rpi_5.10.74-rt54/linux-image-5.10.74-rt54-v8+_5.10.74-1_arm64.deb
-wget https://github.com/kdoren/linux/releases/download/rpi_5.10.74-rt54/linux-headers-5.10.74-rt54-v8+_5.10.74-1_arm64.deb
-wget https://github.com/kdoren/linux/releases/download/rpi_5.10.74-rt54/linux-libc-dev_5.10.74-1_arm64.deb
-sudo apt install ./linux*
 
 #Install Mod Software
 mv /home/pi/mod /home/pi/install
@@ -95,6 +90,6 @@ sudo ln -sf /usr/lib/systemd/system/browsepy.service /etc/systemd/system/multi-u
 sudo ln -sf /usr/lib/systemd/system/jack.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-host.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-ui.service /etc/systemd/system/multi-user.target.wants
-#sudo ln -sf /usr/lib/systemd/system/mod-monitor.service /etc/systemd/system/multi-user.target.wants
+sudo ln -sf /usr/lib/systemd/system/mod-monitor.service /etc/systemd/system/multi-user.target.wants
 #sudo ln -s /home/pi/data /root/data
 #sudo ln -s /home/pi/data/pedalboards /root/.pedalboards
