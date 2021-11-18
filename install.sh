@@ -100,6 +100,7 @@ sudo cp asound.state.RCA.thru.test /usr/share/doc/audioInjector/asound.state.RCA
 #Create Services
 cd /home/pi/install
 sudo cp *.service /usr/lib/systemd/system/
+sudo ln -sf /usr/lib/systemd/system/wifi-hotspot.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/browsepy.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/jack.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-host.service /etc/systemd/system/multi-user.target.wants
@@ -107,3 +108,10 @@ sudo ln -sf /usr/lib/systemd/system/mod-ui.service /etc/systemd/system/multi-use
 sudo ln -sf /usr/lib/systemd/system/mod-monitor.service /etc/systemd/system/multi-user.target.wants
 sudo ln -s /home/pi/data /root/data
 sudo ln -s /home/pi/data/pedalboards /root/.pedalboards
+
+#Install new hotspot files for the service
+sudo cp -dr default/hostapd.pistomp /etc
+sudo cp -dr dnsmasq.d/wifi-hotspot.conf /etc
+sudo cp -dr hostapd/hostapd.conf /etc
+sudo cp -dr pistomp-wifi/enable_wifi_hotspot.sh /usr/lib/
+sudo cp -dr pistomp-wifi/disable_wifi_hotspot.sh /usr/lib/
