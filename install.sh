@@ -84,6 +84,7 @@ sudo ./setup.py install
 cd ..
 cp -r /home/pi/mod/mod-ui/default.pedalboard /home/pi/data/pedalboards
 
+#AudioInjector Stuff
 deb_file=audio.injector.scripts_0.1-1_all.deb
 wget https://github.com/Audio-Injector/stereo-and-zero/raw/master/${deb_file}
 sudo dpkg -i ${deb_file}
