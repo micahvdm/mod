@@ -11,8 +11,25 @@ sudo apt-get -y install virtualenv python3-pip python3-dev git build-essential l
 sudo pip3 install pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 scandir backports.shutil-get-terminal-size
 sudo pip3 install git+git://github.com/dlitz/pycrypto@master#egg=pycrypto
 sudo pip3 install tornado==4.3
-sudo pip3 install Pillow==8.2.0
+sudo pip3 install Pillow==8.4.0
 
+#Install RT Kernel .deb files
+sudo wget https://github.com/kdoren/linux/releases/download/rpi_5.10.74-rt54/linux-image-5.10.74-rt54-v8+_5.10.74-1_arm64.deb
+sudo wget https://github.com/kdoren/linux/releases/download/rpi_5.10.74-rt54/linux-headers-5.10.74-rt54-v8+_5.10.74-1_arm64.deb
+sudo wget https://github.com/kdoren/linux/releases/download/rpi_5.10.74-rt54/linux-libc-dev_5.10.74-1_arm64.deb
+sudo apt install ./linux*
+
+#Move RT kernel stuff to rt folder
+sudo mkdir -p /boot/rt/overlays/
+sudo cp -d /usr/lib/linux-image-5.10.74-rt54-v8+/overlays/* /boot/rt/overlays/
+sudo cp -dr /usr/lib/linux-image-5.10.74-rt54-v8+/* /boot/rt/
+sudo mkdir -p /boot/rt/broadcom
+sudo cp -dr /usr/lib/linux-image-5.10.74-rt54-v8+/broadcom/* /boot/rt/broadcom
+sudo touch /boot/rt/overlays/README
+sudo mv /boot/vmlinuz-5.10.74-rt54-v8+ /boot/rt/
+sudo mv /boot/initrd.img-5.10.74-rt54-v8+ /boot/rt/
+sudo mv /boot/System.map-5.10.74-rt54-v8+ /boot/rt/
+sudo mv /boot/config-5.10.74-rt54-v8+ /boot/rt/
 
 #Install Mod Software
 mv /home/pi/mod /home/pi/install
@@ -45,7 +62,7 @@ sudo pip3 install ./
 cd ..
 
 #Mod-host
-git clone --branch hotfix-1.10 https://github.com/moddevices/mod-host.git
+git clone https://github.com/moddevices/mod-host.git
 cd mod-host
 make -j 4
 sudo make install
@@ -72,8 +89,8 @@ sudo sed -i 's/sudo rpi-update/#sudo rpi-update/' /usr/bin/audioInjector-setup.s
 /usr/bin/audioInjector-setup.sh
 
 # # Change amixer settings
-#cd /home/pi/install
-#sudo cp asound.state.RCA.thru.test /usr/share/doc/audioInjector/asound.state.RCA.thru.test
+cd /home/pi/install
+sudo cp asound.state.RCA.thru.test /usr/share/doc/audioInjector/asound.state.RCA.thru.test
 #alsactl --file /usr/share/doc/audioInjector/asound.state.RCA.thru.test restore
 
 #Create Services
