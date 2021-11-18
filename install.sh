@@ -5,7 +5,7 @@ set -x
 sudo apt-get update --allow-releaseinfo-change --fix-missing
 
 #Install Dependancies
-sudo apt-get -y install virtualenv python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev liblilv-dev libjpeg-dev zlib1g-dev cmake debhelper dh-autoreconf dh-python gperf intltool ladspa-sdk libarmadillo-dev libasound2-dev libavahi-gobject-dev libavcodec-dev libavutil-dev libbluetooth-dev libboost-dev libeigen3-dev libfftw3-dev libglib2.0-dev libglibmm-2.4-dev libgtk2.0-dev libgtkmm-2.4-dev libjack-jackd2-dev libjack-jackd2-dev liblilv-dev liblrdf0-dev libsamplerate0-dev libsigc++-2.0-dev libsndfile1-dev libsndfile1-dev libzita-convolver-dev libzita-resampler-dev lv2-dev p7zip-full python3-all python3-setuptools libreadline-dev zita-alsa-pcmi-utils
+sudo apt-get -y install virtualenv python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev liblilv-dev libjpeg-dev zlib1g-dev cmake debhelper dh-autoreconf dh-python gperf intltool ladspa-sdk libarmadillo-dev libasound2-dev libavahi-gobject-dev libavcodec-dev libavutil-dev libbluetooth-dev libboost-dev libeigen3-dev libfftw3-dev libglib2.0-dev libglibmm-2.4-dev libgtk2.0-dev libgtkmm-2.4-dev libjack-jackd2-dev libjack-jackd2-dev liblilv-dev liblrdf0-dev libsamplerate0-dev libsigc++-2.0-dev libsndfile1-dev libsndfile1-dev libzita-convolver-dev libzita-resampler-dev lv2-dev p7zip-full python3-all python3-setuptools libreadline-dev zita-alsa-pcmi-utils hostapd dnsmasq iptables
 
 #Install Python Dependancies
 sudo pip3 install pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 scandir backports.shutil-get-terminal-size
@@ -32,7 +32,7 @@ sudo mv /boot/System.map-5.10.74-rt54-v8+ /boot/rt/
 sudo mv /boot/config-5.10.74-rt54-v8+ /boot/rt/
 
 #Patch config.txt for RT kernel stuff
-sudo patch /boot/config.txt config.patch
+sudo cp config.txt /boot
 
 #Install Mod Software
 mv /home/pi/mod /home/pi/install
@@ -100,7 +100,6 @@ sudo cp asound.state.RCA.thru.test /usr/share/doc/audioInjector/asound.state.RCA
 #Create Services
 cd /home/pi/install
 sudo cp *.service /usr/lib/systemd/system/
-sudo ln -sf /usr/lib/systemd/system/wifi-hotspot.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/browsepy.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/jack.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-host.service /etc/systemd/system/multi-user.target.wants
@@ -108,10 +107,3 @@ sudo ln -sf /usr/lib/systemd/system/mod-ui.service /etc/systemd/system/multi-use
 sudo ln -sf /usr/lib/systemd/system/mod-monitor.service /etc/systemd/system/multi-user.target.wants
 sudo ln -s /home/pi/data /root/data
 sudo ln -s /home/pi/data/pedalboards /root/.pedalboards
-
-#Install new hotspot files for the service
-sudo cp -dr default/hostapd.pistomp /etc
-sudo cp -dr dnsmasq.d/wifi-hotspot.conf /etc
-sudo cp -dr hostapd/hostapd.conf /etc
-sudo cp -dr pistomp-wifi/enable_wifi_hotspot.sh /usr/lib/
-sudo cp -dr pistomp-wifi/disable_wifi_hotspot.sh /usr/lib/
