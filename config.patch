@@ -1,0 +1,56 @@
+--- config.txt	2021-11-18 12:32:12.000000000 +0000
++++ confignew.txt	2021-11-18 14:24:50.000000000 +0000
+@@ -39,9 +39,9 @@
+ #arm_freq=800
+ 
+ # Uncomment some or all of these to enable the optional hardware interfaces
+-#dtparam=i2c_arm=on
+-#dtparam=i2s=on
+-#dtparam=spi=on
++dtparam=i2c_arm=on
++dtparam=i2s=on
++dtparam=spi=on
+ 
+ # Uncomment this to enable infrared communication.
+ #dtoverlay=gpio-ir,gpio_pin=17
+@@ -58,12 +58,18 @@
+ # Automatically load overlays for detected DSI displays
+ display_auto_detect=1
+ 
+-# Enable DRM VC4 V3D driver
+-#dtoverlay=vc4-kms-v3d
+ max_framebuffers=2
+ 
+ # Run in 64-bit mode
+ arm_64bit=1
++gpu_mem=16
++
++[all]
++kernel=vmlinuz-5.10.74-rt54-v8+
++# initramfs initrd.img-5.10.74-rt54-v8+
++os_prefix=rt
++overlay_prefix=overlays/
++[all]
+ 
+ # Disable compensation for displays with overscan
+ disable_overscan=1
+@@ -81,19 +87,3 @@
+ arm_boost=1
+ 
+ [all]
+-
+-[all]
+-kernel=vmlinuz-5.10.74-rt54-v8+
+-# initramfs initrd.img-5.10.74-rt54-v8+
+-os_prefix=kern/
+-overlay_prefix=overlays/
+-arm_64bit=1
+-[all]
+-# enable the AudioInjector.net sound card
+-	dtoverlay=audioinjector-wm8731-audio
+-
+-# pi-stomp additions to allow DIN Midi, disables bluetooth however
+-enable_uart=1
+-dtoverlay=pi3-disable-bt
+-dtoverlay=pi3-miniuart-bt
+-dtoverlay=midi-uart0
