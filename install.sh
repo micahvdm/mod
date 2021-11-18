@@ -32,7 +32,7 @@ sudo mv /boot/System.map-5.10.74-rt54-v8+ /boot/rt/
 sudo mv /boot/config-5.10.74-rt54-v8+ /boot/rt/
 
 #Patch config.txt for RT kernel stuff
-sudo patch -b -N -u /boot/config.txt -i config.txt.diff
+sudo patch /boot/config.txt config.patch
 
 #Install Mod Software
 mv /home/pi/mod /home/pi/install
