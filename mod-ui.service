@@ -23,7 +23,7 @@ Environment=MOD_USER_FILES_DIR=/home/pi/data/user-files
 Environment=MOD_HTML_DIR=/usr/local/share/mod/html
 
 WorkingDirectory=/home/pi/mod/mod-ui
-ExecStart=/home/pi/mod/mod-ui/server.py
+ExecStart=/usr/local/bin/mod-ui
 Restart=always
 RestartSec=2
 
