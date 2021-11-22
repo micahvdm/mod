@@ -12,6 +12,7 @@ sudo pip3 install pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 scandir backport
 sudo pip3 install git+git://github.com/dlitz/pycrypto@master#egg=pycrypto
 sudo pip3 install tornado==4.3
 sudo pip3 install Pillow==8.4.0
+sudo pip3 install cython
 
 #Install RT Kernel .deb files
 sudo wget https://github.com/kdoren/linux/releases/download/rpi_5.10.74-rt54/linux-image-5.10.74-rt54-v8+_5.10.74-1_arm64.deb
@@ -84,6 +85,12 @@ sudo ./setup.py install
 cd ..
 cp -r /home/pi/mod/mod-ui/default.pedalboard /home/pi/data/pedalboards
 
+#Install touchOSC2midi
+git clone https://github.com/BlokasLabs/touchosc2midi.git
+cd touchosc2midi
+sudo pip3 install ./
+cd ..
+
 #AudioInjector Stuff
 deb_file=audio.injector.scripts_0.1-1_all.deb
 wget https://github.com/Audio-Injector/stereo-and-zero/raw/master/${deb_file}
@@ -104,5 +111,6 @@ sudo ln -sf /usr/lib/systemd/system/browsepy.service /etc/systemd/system/multi-u
 sudo ln -sf /usr/lib/systemd/system/jack.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-host.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-ui.service /etc/systemd/system/multi-user.target.wants
+sudo ln -sf /usr/lib/systemd/system/touchosc2midi.service /etc/systemd/system/multi-user.target.wants
 sudo ln -s /home/pi/data /root/data
 sudo ln -s /home/pi/data/pedalboards /root/.pedalboards
