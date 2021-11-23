@@ -18,7 +18,7 @@ mv /home/pi/mod /home/pi/install
 mkdir /home/pi/.lv2
 mkdir /home/pi/mod
 mkdir /home/pi/data
-mkdir /home/pi/data/pedalboards
+mkdir /home/pi/data/.pedalboards
 mkdir /home/pi/data/user-files
 cd /home/pi/data/user-files
 mkdir "Speaker Cabinets IRs"
@@ -75,9 +75,12 @@ sudo make install
 #mod-midi-merger
 pushd $(mktemp -d) && https://github.com/moddevices/mod-midi-merger.git
 pushd mod-midi-merger
-
+mkdir build && cd build
+cmake ..
+sudo make install
 
 #AudioInjector Stuff
+cd /home/pi/install
 deb_file=audio.injector.scripts_0.1-1_all.deb
 wget https://github.com/Audio-Injector/stereo-and-zero/raw/master/${deb_file}
 sudo dpkg -i ${deb_file}
@@ -96,5 +99,7 @@ sudo ln -sf /usr/lib/systemd/system/browsepy.service /etc/systemd/system/multi-u
 sudo ln -sf /usr/lib/systemd/system/jack.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-host.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-ui.service /etc/systemd/system/multi-user.target.wants
-sudo ln -s /home/pi/data /root/data
-sudo ln -s /home/pi/data/pedalboards /root/.pedalboards
+sudo ln -sf /usr/lib/systemd/system/amidiauto.service /etc/systemd/system/multi-user.target.wants
+sudo ln -sf /usr/lib/systemd/system/amidithru.service /etc/systemd/system/multi-user.target.wants
+sudo ln -sf /usr/lib/systemd/system/touchosc2midi.service /etc/systemd/system/multi-user.target.wants
+sudo ln -sf /usr/lib/systemd/system/mod-touchosc2midi.service /etc/systemd/system/multi-user.target.wants
