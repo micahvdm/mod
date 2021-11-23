@@ -57,9 +57,25 @@ make
 cd ..
 sudo ./setup.py install
 
+#TouchOSC2midi
 pushd $(mktemp -d) && https://github.com/BlokasLabs/touchosc2midi.git
 pushd touchosc2midi
 sudo pip3 install ./
+
+#Amidithru
+pushd $(mktemp -d) && https://github.com/BlokasLabs/amidithru.git
+pushd amidithru
+sudo make install
+
+#amidiauto
+pushd $(mktemp -d) && https://github.com/BlokasLabs/amidiauto.git
+pushd amidiauto
+sudo make install
+
+#mod-midi-merger
+pushd $(mktemp -d) && https://github.com/moddevices/mod-midi-merger.git
+pushd mod-midi-merger
+
 
 #AudioInjector Stuff
 deb_file=audio.injector.scripts_0.1-1_all.deb
