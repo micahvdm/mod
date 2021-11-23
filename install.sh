@@ -12,6 +12,7 @@ sudo pip3 install pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 scandir backport
 sudo pip3 install git+git://github.com/dlitz/pycrypto@master#egg=pycrypto
 sudo pip3 install tornado==4.3
 sudo pip3 install Pillow==8.4.0
+sudo pip3 install cython
 
 #Install Mod Software
 mv /home/pi/mod /home/pi/install
@@ -60,6 +61,7 @@ sudo ./setup.py install
 #TouchOSC2midi
 pushd $(mktemp -d) && git clone https://github.com/BlokasLabs/touchosc2midi.git
 pushd touchosc2midi
+sudo pip3 install -r requirements.txt
 sudo pip3 install ./
 
 #Amidithru
