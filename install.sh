@@ -5,34 +5,13 @@ set -x
 sudo apt-get update --allow-releaseinfo-change --fix-missing
 
 #Install Dependancies
-sudo apt-get -y install virtualenv python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev liblilv-dev libjpeg-dev zlib1g-dev cmake debhelper dh-autoreconf dh-python gperf intltool ladspa-sdk libarmadillo-dev libasound2-dev libavahi-gobject-dev libavcodec-dev libavutil-dev libbluetooth-dev libboost-dev libeigen3-dev libfftw3-dev libglib2.0-dev libglibmm-2.4-dev libgtk2.0-dev libgtkmm-2.4-dev libjack-jackd2-dev libjack-jackd2-dev liblilv-dev liblrdf0-dev libsamplerate0-dev libsigc++-2.0-dev libsndfile1-dev libsndfile1-dev libzita-convolver-dev libzita-resampler-dev lv2-dev p7zip-full python3-all python3-setuptools libreadline-dev zita-alsa-pcmi-utils hostapd dnsmasq iptables python3-smbus
+sudo apt-get -y install virtualenv python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev liblilv-dev libjpeg-dev zlib1g-dev cmake debhelper dh-autoreconf dh-python gperf intltool ladspa-sdk libarmadillo-dev libasound2-dev libavahi-gobject-dev libavcodec-dev libavutil-dev libbluetooth-dev libboost-dev libeigen3-dev libfftw3-dev libglib2.0-dev libglibmm-2.4-dev libgtk2.0-dev libgtkmm-2.4-dev libjack-jackd2-dev libjack-jackd2-dev liblilv-dev liblrdf0-dev libsamplerate0-dev libsigc++-2.0-dev libsndfile1-dev libsndfile1-dev libzita-convolver-dev libzita-resampler-dev lv2-dev p7zip-full python3-all python3-setuptools libreadline-dev zita-alsa-pcmi-utils hostapd dnsmasq iptables python3-smbus python3-dev
 
 #Install Python Dependancies
 sudo pip3 install pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 scandir backports.shutil-get-terminal-size
 sudo pip3 install git+git://github.com/dlitz/pycrypto@master#egg=pycrypto
 sudo pip3 install tornado==4.3
 sudo pip3 install Pillow==8.4.0
-
-#Install RT Kernel .deb files
-sudo wget https://github.com/kdoren/linux/releases/download/rpi_5.10.74-rt54/linux-image-5.10.74-rt54-v8+_5.10.74-1_arm64.deb
-sudo wget https://github.com/kdoren/linux/releases/download/rpi_5.10.74-rt54/linux-headers-5.10.74-rt54-v8+_5.10.74-1_arm64.deb
-sudo wget https://github.com/kdoren/linux/releases/download/rpi_5.10.74-rt54/linux-libc-dev_5.10.74-1_arm64.deb
-sudo apt install ./linux*
-
-#Move RT kernel stuff to rt folder
-sudo mkdir -p /boot/rt/overlays/
-sudo cp -d /usr/lib/linux-image-5.10.74-rt54-v8+/overlays/* /boot/rt/overlays/
-sudo cp -dr /usr/lib/linux-image-5.10.74-rt54-v8+/* /boot/rt/
-sudo mkdir -p /boot/rt/broadcom
-sudo cp -dr /usr/lib/linux-image-5.10.74-rt54-v8+/broadcom/* /boot/rt/broadcom
-sudo touch /boot/rt/overlays/README
-sudo mv /boot/vmlinuz-5.10.74-rt54-v8+ /boot/rt/
-sudo mv /boot/initrd.img-5.10.74-rt54-v8+ /boot/rt/
-sudo mv /boot/System.map-5.10.74-rt54-v8+ /boot/rt/
-sudo mv /boot/config-5.10.74-rt54-v8+ /boot/rt/
-
-#Patch config.txt for RT kernel stuff
-sudo cp config.txt /boot
 
 #Install Mod Software
 mv /home/pi/mod /home/pi/install
@@ -53,36 +32,34 @@ mkdir "MIDI Songs"
 mkdir "Hydrogen Drumkits"
 mkdir "SF2 Instruments"
 mkdir "SFZ Instruments"
-cd /home/pi/mod
 
 #Jack2
 sudo apt install -y jackd2
 
 #Browsepy
-git clone https://github.com/moddevices/browsepy.git
-cd browsepy
+pushd $(mktemp -d) && git clone https://github.com/moddevices/browsepy.git
+pushd browsepy
 sudo pip3 install ./
-cd ..
 
 #Mod-host
-git clone https://github.com/moddevices/mod-host.git
-cd mod-host
+pushd $(mktemp -d) && git clone https://github.com/moddevices/mod-host.git
+pushd mod-host
 make -j 4
 sudo make install
-make clean
-cd ..
 
 #Mod-ui
-git clone --branch hotfix-1.11 https://github.com/moddevices/mod-ui.git
-cd mod-ui
+pushd $(mktemp -d) && git clone --branch hotfix-1.11 https://github.com/moddevices/mod-ui.git
+pushd mod-ui
 chmod +x setup.py
 pip3 install -r requirements.txt
 cd utils
 make
 cd ..
 sudo ./setup.py install
-cd ..
-cp -r /home/pi/mod/mod-ui/default.pedalboard /home/pi/data/pedalboards
+
+pushd $(mktemp -d) && https://github.com/BlokasLabs/touchosc2midi.git
+pushd touchosc2midi
+sudo pip3 install ./
 
 #AudioInjector Stuff
 deb_file=audio.injector.scripts_0.1-1_all.deb
@@ -98,7 +75,6 @@ sudo cp asound.state.RCA.thru.test /usr/share/doc/audioInjector/asound.state.RCA
 #alsactl --file /usr/share/doc/audioInjector/asound.state.RCA.thru.test restore
 
 #Create Services
-cd /home/pi/install
 sudo cp *.service /usr/lib/systemd/system/
 sudo ln -sf /usr/lib/systemd/system/browsepy.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/jack.service /etc/systemd/system/multi-user.target.wants
