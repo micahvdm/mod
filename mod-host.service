@@ -7,7 +7,7 @@ BindsTo=jack.service
 LimitRTPRIO=95
 LimitMEMLOCK=infinity
 Type=forking
-Environment=LV2_PATH=/home/pi/.lv2
+Environment=LV2_PATH=/home/pistomp/.lv2
 ExecStart=/usr/local/bin/mod-host -p 5555 -f 5556
 Restart=always
 RestartSec=2
