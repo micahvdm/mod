@@ -5,7 +5,7 @@ set -x
 #sudo apt-get update --allow-releaseinfo-change --fix-missing
 
 #Install Dependancies
-sudo apt-get -y install virtualenv python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev liblilv-dev libjpeg-dev zlib1g-dev cmake debhelper dh-autoreconf dh-python gperf intltool ladspa-sdk libarmadillo-dev libasound2-dev libavahi-gobject-dev libavcodec-dev libavutil-dev libbluetooth-dev libboost-dev libeigen3-dev libfftw3-dev libglib2.0-dev libglibmm-2.4-dev libgtk2.0-dev libgtkmm-2.4-dev libjack-jackd2-dev libjack-jackd2-dev liblilv-dev liblrdf0-dev libsamplerate0-dev libsigc++-2.0-dev libsndfile1-dev libsndfile1-dev libzita-convolver-dev libzita-resampler-dev lv2-dev p7zip-full python3-all python3-setuptools libreadline-dev zita-alsa-pcmi-utils hostapd dnsmasq iptables python3-smbus python3-dev
+sudo apt-get -y install virtualenv python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev liblilv-dev libjpeg-dev zlib1g-dev cmake debhelper dh-autoreconf dh-python gperf intltool ladspa-sdk libarmadillo-dev libasound2-dev libavahi-gobject-dev libavcodec-dev libavutil-dev libbluetooth-dev libboost-dev libeigen3-dev libfftw3-dev libglib2.0-dev libglibmm-2.4-dev libgtk2.0-dev libgtkmm-2.4-dev libjack-jackd2-dev libjack-jackd2-dev liblilv-dev liblrdf0-dev libsamplerate0-dev libsigc++-2.0-dev libsndfile1-dev libsndfile1-dev libzita-convolver-dev libzita-resampler-dev lv2-dev p7zip-full python3-all python3-setuptools libreadline-dev zita-alsa-pcmi-utils hostapd dnsmasq iptables python3-smbus python3-dev liblo-dev
 
 #Install Python Dependancies
 sudo pip3 install pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 scandir backports.shutil-get-terminal-size
@@ -15,7 +15,7 @@ sudo pip3 install Pillow==8.4.0
 sudo pip3 install cython
 
 #Install Mod Software
-mv /home/pistomp/mod /home/pi/install
+mv /home/pistomp/mod /home/pistomp/install
 mkdir /home/pistomp/.lv2
 mkdir /home/pistomp/mod
 mkdir /home/pistomp/data
@@ -52,34 +52,10 @@ sudo make install
 pushd $(mktemp -d) && git clone --branch hotfix-1.11 https://github.com/moddevices/mod-ui.git
 pushd mod-ui
 chmod +x setup.py
-pip3 install -r requirements.txt
 cd utils
 make
 cd ..
 sudo ./setup.py install
-
-#TouchOSC2midi
-pushd $(mktemp -d) && git clone https://github.com/BlokasLabs/touchosc2midi.git
-pushd touchosc2midi
-sudo pip3 install -r requirements.txt
-sudo pip3 install ./
-
-#Amidithru
-pushd $(mktemp -d) && git clone https://github.com/BlokasLabs/amidithru.git
-pushd amidithru
-sudo make install
-
-#amidiauto
-pushd $(mktemp -d) && git clone https://github.com/BlokasLabs/amidiauto.git
-pushd amidiauto
-sudo make install
-
-#mod-midi-merger
-pushd $(mktemp -d) && git clone https://github.com/moddevices/mod-midi-merger.git
-pushd mod-midi-merger
-mkdir build && cd build
-cmake ..
-sudo make install
 
 #AudioInjector Stuff
 cd /home/pistomp/install
