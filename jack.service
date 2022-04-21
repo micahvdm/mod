@@ -4,7 +4,7 @@ Description=JACK2 Audio Server
 #After=sound.target
 
 [Service]
-Environment=LV2_PATH=/home/pi/.lv2
+Environment=LV2_PATH=/home/pistomp/.lv2
 Environment=JACK_NO_AUDIO_RESERVATION=1
 LimitRTPRIO=infinity
 LimitMEMLOCK=infinity
