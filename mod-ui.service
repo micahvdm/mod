@@ -22,7 +22,6 @@ Environment=MOD_DATA_DIR=/home/pistomp/data
 Environment=MOD_USER_FILES_DIR=/home/pistomp/data/user-files
 Environment=MOD_HTML_DIR=/usr/local/share/mod/html
 
-WorkingDirectory=/home/pistomp/mod/mod-ui
 ExecStart=/usr/local/bin/mod-ui
 Restart=always
 RestartSec=2
