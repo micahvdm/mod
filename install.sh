@@ -15,7 +15,6 @@ sudo pip3 install Pillow==8.4.0
 sudo pip3 install cython
 
 #Install Mod Software
-mv /home/pistomp/mod /home/pistomp/install
 mkdir /home/pistomp/.lv2
 mkdir /home/pistomp/mod
 mkdir /home/pistomp/data
@@ -77,7 +76,3 @@ sudo ln -sf /usr/lib/systemd/system/browsepy.service /etc/systemd/system/multi-u
 sudo ln -sf /usr/lib/systemd/system/jack.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-host.service /etc/systemd/system/multi-user.target.wants
 sudo ln -sf /usr/lib/systemd/system/mod-ui.service /etc/systemd/system/multi-user.target.wants
-sudo ln -sf /usr/lib/systemd/system/amidiauto.service /etc/systemd/system/multi-user.target.wants
-sudo ln -sf /usr/lib/systemd/system/amidithru.service /etc/systemd/system/multi-user.target.wants
-sudo ln -sf /usr/lib/systemd/system/touchosc2midi.service /etc/systemd/system/multi-user.target.wants
-sudo ln -sf /usr/lib/systemd/system/mod-touchosc2midi.service /etc/systemd/system/multi-user.target.wants
