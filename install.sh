@@ -16,7 +16,6 @@ sudo pip3 install cython
 
 #Install Mod Software
 mkdir /home/pistomp/.lv2
-mkdir /home/pistomp/mod
 mkdir /home/pistomp/data
 mkdir /home/pistomp/data/.pedalboards
 mkdir /home/pistomp/data/user-files
@@ -57,7 +56,7 @@ cd ..
 sudo ./setup.py install
 
 #AudioInjector Stuff
-cd /home/pistomp/install
+cd /home/pistomp/mod
 deb_file=audio.injector.scripts_0.1-1_all.deb
 wget https://github.com/Audio-Injector/stereo-and-zero/raw/master/${deb_file}
 sudo dpkg -i ${deb_file}
@@ -66,7 +65,7 @@ sudo sed -i 's/sudo rpi-update/#sudo rpi-update/' /usr/bin/audioInjector-setup.s
 /usr/bin/audioInjector-setup.sh
 
 # # Change amixer settings
-cd /home/pistomp/install
+cd /home/pistomp/mod
 sudo cp asound.state.RCA.thru.test /usr/share/doc/audioInjector/asound.state.RCA.thru.test
 #alsactl --file /usr/share/doc/audioInjector/asound.state.RCA.thru.test restore
 
