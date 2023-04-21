@@ -49,7 +49,7 @@ make -j 4
 sudo make install
 
 #Mod-ui
-pushd $(mktemp -d) && git clone --branch hotfix-1.11 https://github.com/moddevices/mod-ui.git
+pushd $(mktemp -d) && git clone https://github.com/moddevices/mod-ui.git
 pushd mod-ui
 chmod +x setup.py
 cd utils
